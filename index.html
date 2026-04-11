@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brilliant Solutions Car Wash — Abu Dhabi</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── HOME HERO ── */
+#hero {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 5% 5rem; position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+              radial-gradient(ellipse 50% 80% at 10% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute; inset: 0; opacity: 0.025;
+  background-image: linear-gradient(var(--gold) 1px, transparent 1px), linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-tag { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+.hero-tag::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+#hero h1 { opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+.hero-sub { max-width: 480px; margin-top: 2rem; color: var(--muted); font-size: 1rem; line-height: 1.8; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
+.hero-actions { display: flex; gap: 1.2rem; align-items: center; margin-top: 3rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+.hero-stats { display: flex; gap: 3rem; margin-top: 5rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s 1s forwards; }
+.stat-num { font-family: var(--font-display); font-size: 2.6rem; font-weight: 600; color: var(--gold); line-height: 1; }
+.stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+
+.hero-badge {
+  position: absolute; right: 9%; top: 50%; transform: translateY(-50%);
+  width: 190px; height: 190px;
+  border: 1px solid rgba(201,168,76,0.2); border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: 0.3rem;
+  opacity: 0; animation: fadeIn 1.2s 1.2s forwards;
+}
+.hero-badge::before { content: ''; position: absolute; inset: 10px; border: 1px solid rgba(201,168,76,0.1); border-radius: 50%; }
+.hero-badge .b-icon { font-size: 2.2rem; }
+.hero-badge .b-text { font-family: var(--font-display); font-size: 0.9rem; color: var(--gold); font-style: italic; line-height: 1.3; }
+.hero-badge .b-sub { font-size: 0.63rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
+.hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); opacity: 0; animation: fadeIn 1s 1.5s forwards; }
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
+
+/* ── HOME SECTIONS ── */
+#intro { background: var(--dark2); padding: 6rem 5%; }
+.intro-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.intro-right { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.intro-box { background: var(--dark3); border: 1px solid rgba(255,255,255,0.04); padding: 2rem; border-radius: 2px; transition: border-color 0.3s; }
+.intro-box:hover { border-color: rgba(201,168,76,0.2); }
+.intro-box .i-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+.intro-box h4 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem; }
+.intro-box p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+/* ── SERVICES PREVIEW ── */
+#services-preview { background: var(--black); }
+.services-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(201,168,76,0.07); margin-top: 4rem; }
+.sp-card { background: var(--black); padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: background 0.3s; }
+.sp-card:hover { background: var(--dark2); }
+.sp-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transition: transform 0.4s; transform-origin: left; }
+.sp-card:hover::after { transform: scaleX(1); }
+.sp-icon { font-size: 1.8rem; margin-bottom: 1.5rem; }
+.sp-card h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; margin-bottom: 0.7rem; }
+.sp-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
+.sp-price { margin-top: 1.5rem; font-family: var(--font-display); font-size: 1.5rem; color: var(--gold); font-weight: 600; }
+.sp-price span { font-size: 0.72rem; color: var(--muted); font-family: var(--font-body); font-weight: 300; }
+.view-all-row { text-align: center; margin-top: 3rem; }
+
+/* ── TESTIMONIALS STRIP ── */
+#testi-strip { background: var(--dark2); padding: 6rem 5%; }
+.testi-strip-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+.testi-card { background: var(--dark3); border: 1px solid rgba(255,255,255,0.05); padding: 2rem; border-radius: 2px; transition: border-color 0.3s; }
+.testi-card:hover { border-color: rgba(201,168,76,0.2); }
+.stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.08em; margin-bottom: 1rem; }
+.testi-text { font-family: var(--font-display); font-size: 1.05rem; font-style: italic; line-height: 1.7; margin-bottom: 1.5rem; }
+.testi-author { font-size: 0.78rem; color: var(--muted); }
+.testi-author strong { color: var(--white); display: block; font-weight: 400; margin-bottom: 0.15rem; }
+
+/* ── CTA BAND ── */
+#cta-band {
+  background: var(--dark3); border-top: 1px solid rgba(201,168,76,0.1); border-bottom: 1px solid rgba(201,168,76,0.1);
+  padding: 5rem 5%; text-align: center;
+  position: relative; overflow: hidden;
+}
+#cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(201,168,76,0.05) 0%, transparent 70%); }
+#cta-band h2 { position: relative; margin-bottom: 1.2rem; }
+#cta-band p { color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; position: relative; }
+.cta-actions { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; position: relative; }
+
+@media (max-width: 900px) {
+  .intro-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .intro-right { grid-template-columns: 1fr 1fr; }
+  .services-preview-grid { grid-template-columns: 1fr 1fr; }
+  .testi-strip-grid { grid-template-columns: 1fr; }
+  .hero-badge { display: none; }
+}
+@media (max-width: 600px) {
+  .services-preview-grid { grid-template-columns: 1fr; }
+  .intro-right { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">Brilliant Solutions<span>Car Wash · Abu Dhabi</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Book Now</a>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="how-it-works.html">How It Works</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="nav-cta">Book Now</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-tag">Door-to-Door Car Wash · Abu Dhabi</div>
+  <h1>We Come to<br><em>Your Car.</em><br>Wherever It Is.</h1>
+  <p class="hero-sub">Premium professional car wash delivered to your home, office, or anywhere across Abu Dhabi. No queues, no hassle — just a brilliantly clean car.</p>
+  <div class="hero-actions">
+    <a href="contact.html" class="btn-primary">Book a Wash</a>
+    <a href="services.html" class="btn-outline">View Services</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">500+</div><div class="stat-label">Happy Clients</div></div>
+    <div><div class="stat-num">5★</div><div class="stat-label">Avg. Rating</div></div>
+    <div><div class="stat-num">100%</div><div class="stat-label">Eco Friendly</div></div>
+    <div><div class="stat-num">2hr</div><div class="stat-label">Response Time</div></div>
+  </div>
+  <div class="hero-badge">
+    <div class="b-icon">✦</div>
+    <div class="b-text">Serving All<br>of Abu Dhabi</div>
+    <div class="b-sub">Since 2020</div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
+</section>
+
+<!-- INTRO / WHY -->
+<section id="intro">
+  <div class="intro-inner">
+    <div>
+      <div class="section-tag reveal">The Brilliant Way</div>
+      <h2 class="reveal">Car Wash,<br><em>Reinvented</em><br>for Abu Dhabi</h2>
+      <p class="section-intro reveal">We bring a fully equipped professional team to your doorstep. No driving, no waiting in line — just convenience and quality on your schedule.</p>
+      <div class="gold-divider reveal"></div>
+      <a href="about.html" class="btn-outline reveal" style="margin-top:1rem;">About Us</a>
+    </div>
+    <div class="intro-right" data-stagger>
+      <div class="intro-box reveal">
+        <div class="i-icon">🏠</div>
+        <h4>At Your Home</h4>
+        <p>We come to your building or villa — your car gets washed while you relax inside.</p>
+      </div>
+      <div class="intro-box reveal">
+        <div class="i-icon">🏢</div>
+        <h4>At Your Office</h4>
+        <p>We handle your car in the parking lot while you're in meetings. Done before lunch.</p>
+      </div>
+      <div class="intro-box reveal">
+        <div class="i-icon">🌿</div>
+        <h4>Eco Products</h4>
+        <p>Biodegradable, waterless-option detergents. Safe for your car and UAE's environment.</p>
+      </div>
+      <div class="intro-box reveal">
+        <div class="i-icon">💎</div>
+        <h4>Guaranteed</h4>
+        <p>Not satisfied? We redo it free. We stand behind every single wash, every time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES PREVIEW -->
+<section id="services-preview">
+  <div class="reveal">
+    <div class="section-tag">Our Services</div>
+    <h2>Choose Your <em>Perfect Wash</em></h2>
+    <p class="section-intro">From a quick freshen-up to a full luxury detail — we have a package for every need and budget.</p>
+  </div>
+  <div class="services-preview-grid" data-stagger>
+    <div class="sp-card reveal">
+      <div class="sp-icon">💧</div>
+      <h3>Express Wash</h3>
+      <p>Exterior foam wash, rinse, and hand dry. A quick daily refresh for your vehicle.</p>
+      <div class="sp-price">49 <span>AED</span></div>
+    </div>
+    <div class="sp-card reveal">
+      <div class="sp-icon">✨</div>
+      <h3>Standard Detail</h3>
+      <p>Full exterior wash plus interior vacuum, dashboard wipe, windows, and tyre dressing.</p>
+      <div class="sp-price">99 <span>AED</span></div>
+    </div>
+    <div class="sp-card reveal">
+      <div class="sp-icon">🏆</div>
+      <h3>Premium Detail</h3>
+      <p>Hand wax, leather condition, engine bay clean, and full odour elimination.</p>
+      <div class="sp-price">199 <span>AED</span></div>
+    </div>
+  </div>
+  <div class="view-all-row reveal">
+    <a href="services.html" class="btn-outline">View All Services & Pricing →</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS STRIP -->
+<section id="testi-strip">
+  <div class="reveal" style="text-align:center;">
+    <div class="section-tag" style="justify-content:center;">Customer Reviews</div>
+    <h2>What Our Clients <em>Say</em></h2>
+  </div>
+  <div class="testi-strip-grid" data-stagger>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Booked them for my Tesla Model 3 — they arrived on time, were incredibly professional, and the car looked showroom-fresh."</p>
+      <div class="testi-author"><strong>Ahmed Al Mansoori</strong>Al Reem Island</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"I have a monthly subscription — the best AED 299 I spend. My car is always clean and they're always punctual. Truly brilliant."</p>
+      <div class="testi-author"><strong>Priya Nair</strong>Khalifa City A</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"They came to my office parking lot and finished before my meeting ended. Interior detail was absolutely spotless."</p>
+      <div class="testi-author"><strong>James McAllister</strong>Mohammed Bin Zayed City</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="cta-band">
+  <h2 class="reveal">Ready for a <em>Brilliant</em> Clean?</h2>
+  <p class="reveal">Book your first wash today and experience Abu Dhabi's premier door-to-door car wash service.</p>
+  <div class="cta-actions reveal">
+    <a href="contact.html" class="btn-primary">Book a Wash Now</a>
+    <a href="tel:+97150000000" class="btn-outline">Call Us</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">Brilliant Solutions</div>
+      <p>Abu Dhabi's premier door-to-door car wash service. Professional, eco-friendly, and fully guaranteed.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Pages</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="services.html">Express Wash</a></li>
+        <li><a href="services.html">Standard Detail</a></li>
+        <li><a href="services.html">Premium Detail</a></li>
+        <li><a href="services.html">Paint Protection</a></li>
+        <li><a href="services.html">Monthly Plans</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:+97150000000">+971 50 000 0000</a></li>
+        <li><a href="mailto:info@brilliantsolutions.ae">info@brilliantsolutions.ae</a></li>
+        <li><a href="#">Abu Dhabi, UAE</a></li>
+        <li><a href="#">7 AM – 9 PM Daily</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Brilliant Solutions Car Wash · Abu Dhabi, UAE</span>
+    <div class="footer-socials">
+      <a href="#" class="social-btn">f</a>
+      <a href="#" class="social-btn">ig</a>
+      <a href="#" class="social-btn">in</a>
+      <a href="#" class="social-btn">tw</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/971500000000" class="whatsapp-float" target="_blank">💬</a>
+<script src="main.js"></script>
+</body>
+</html>

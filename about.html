@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Brilliant Solutions Car Wash</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── STORY ── */
+#story { background: var(--dark2); }
+.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.story-left h2 { margin-bottom: 1.5rem; }
+.story-left p { color: var(--muted); line-height: 1.9; margin-bottom: 1.2rem; font-size: 0.95rem; }
+.story-left p strong { color: var(--white); font-weight: 400; }
+.story-milestones { display: flex; gap: 2.5rem; margin-top: 2.5rem; flex-wrap: wrap; }
+.milestone { text-align: center; }
+.milestone .m-num { font-family: var(--font-display); font-size: 2.8rem; color: var(--gold); font-weight: 600; line-height: 1; }
+.milestone .m-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+.story-right {
+  background: var(--dark3); border: 1px solid rgba(201,168,76,0.1);
+  padding: 3rem; border-radius: 2px; position: relative;
+}
+.story-quote {
+  font-family: var(--font-display); font-size: 1.5rem; font-style: italic;
+  line-height: 1.6; margin-bottom: 1.5rem; color: var(--white);
+}
+.story-quote::before { content: '\201C'; font-size: 4rem; color: var(--gold); line-height: 0; vertical-align: -1.5rem; margin-right: 0.2rem; }
+.story-author { font-size: 0.78rem; color: var(--muted); }
+.story-author strong { display: block; color: var(--gold); font-family: var(--font-display); font-size: 1rem; font-weight: 400; font-style: normal; margin-bottom: 0.2rem; }
+
+/* ── VALUES ── */
+#values { background: var(--black); }
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(201,168,76,0.07); margin-top: 4rem; }
+.value-card { background: var(--black); padding: 2.8rem 2.2rem; transition: background 0.3s; }
+.value-card:hover { background: var(--dark2); }
+.value-num { font-family: var(--font-display); font-size: 3.5rem; font-weight: 600; color: rgba(201,168,76,0.12); line-height: 1; margin-bottom: 1rem; }
+.value-card h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; margin-bottom: 0.8rem; }
+.value-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.85; }
+
+/* ── TEAM ── */
+#team { background: var(--dark2); }
+.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem; }
+.team-card { background: var(--dark3); border: 1px solid rgba(255,255,255,0.04); padding: 2rem 1.5rem; border-radius: 2px; text-align: center; transition: border-color 0.3s; }
+.team-card:hover { border-color: rgba(201,168,76,0.2); }
+.team-avatar {
+  width: 70px; height: 70px; border-radius: 50%; margin: 0 auto 1.2rem;
+  background: var(--dark2); border: 1px solid rgba(201,168,76,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 1.5rem; color: var(--gold);
+}
+.team-card h4 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; margin-bottom: 0.3rem; }
+.team-role { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+.team-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+/* ── WHY CARDS ── */
+#trust { background: var(--black); }
+.trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.trust-card { background: var(--dark2); border: 1px solid rgba(255,255,255,0.04); padding: 2rem; border-radius: 2px; transition: border-color 0.3s; }
+.trust-card:hover { border-color: rgba(201,168,76,0.2); }
+.trust-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+.trust-card h4 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; margin-bottom: 0.6rem; }
+.trust-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
+
+/* ── TESTIMONIALS FULL ── */
+#testi { background: var(--dark2); }
+.testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.testi-card { background: var(--dark3); border: 1px solid rgba(255,255,255,0.05); padding: 2.2rem; border-radius: 2px; transition: border-color 0.3s; }
+.testi-card:hover { border-color: rgba(201,168,76,0.2); }
+.stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 0.08em; margin-bottom: 1.2rem; }
+.testi-text { font-family: var(--font-display); font-size: 1.1rem; font-style: italic; line-height: 1.7; margin-bottom: 1.5rem; }
+.testi-author strong { color: var(--white); display: block; font-weight: 400; margin-bottom: 0.15rem; font-family: var(--font-display); font-size: 1rem; }
+.testi-author span { font-size: 0.78rem; color: var(--muted); }
+
+/* ── CTA ── */
+#about-cta { background: var(--black); text-align: center; border-top: 1px solid rgba(201,168,76,0.08); }
+#about-cta h2 { margin-bottom: 1rem; }
+#about-cta p { color: var(--muted); max-width: 440px; margin: 0 auto 2.5rem; }
+.cta-pair { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .values-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .trust-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">Brilliant Solutions<span>Car Wash · Abu Dhabi</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Book Now</a>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="how-it-works.html">How It Works</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="nav-cta">Book Now</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span>About Us</div>
+  <div class="section-tag">Our Story</div>
+  <h1>Built for<br><em>Abu Dhabi</em></h1>
+</div>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-grid">
+    <div class="story-left">
+      <div class="section-tag reveal">Who We Are</div>
+      <h2 class="reveal">A <em>Local</em> Business<br>with Global Standards</h2>
+      <p class="reveal">Brilliant Solutions Car Wash was founded in Abu Dhabi in 2020 with a simple mission: <strong>make professional car care effortless</strong>. We saw that busy residents and professionals in the UAE didn't have time to drive to a car wash and wait in line — so we brought the service to them.</p>
+      <p class="reveal">What started as a small team of three has grown into Abu Dhabi's most trusted door-to-door car wash service, serving <strong>hundreds of satisfied customers</strong> across all major districts. We combine the professionalism of a luxury detailing studio with the convenience of on-demand delivery.</p>
+      <p class="reveal">Every product we use is <strong>carefully selected</strong> to be effective, safe for your vehicle's finish, and gentle on the environment — critical values for us as an Abu Dhabi business.</p>
+      <div class="story-milestones reveal">
+        <div class="milestone"><div class="m-num">500+</div><div class="m-label">Happy Clients</div></div>
+        <div class="milestone"><div class="m-num">5★</div><div class="m-label">Average Rating</div></div>
+        <div class="milestone"><div class="m-num">5+</div><div class="m-label">Years Serving Abu Dhabi</div></div>
+      </div>
+    </div>
+    <div class="story-right reveal">
+      <div class="story-quote">We built the service we wished existed when we moved to Abu Dhabi ourselves.</div>
+      <div class="story-author"><strong>Founder, Brilliant Solutions</strong>Abu Dhabi · Founded 2020</div>
+      <div style="margin-top:2rem; border-top:1px solid rgba(255,255,255,0.06); padding-top:2rem;">
+        <div style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem;">Our Promise</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.8rem;">
+          <li style="font-size:0.87rem; color:rgba(249,245,238,0.7); display:flex; gap:0.7rem;"><span style="color:var(--gold);">✦</span> Every wash delivered to the highest standard</li>
+          <li style="font-size:0.87rem; color:rgba(249,245,238,0.7); display:flex; gap:0.7rem;"><span style="color:var(--gold);">✦</span> Full satisfaction guarantee — or we redo it free</li>
+          <li style="font-size:0.87rem; color:rgba(249,245,238,0.7); display:flex; gap:0.7rem;"><span style="color:var(--gold);">✦</span> Transparent pricing — no hidden charges</li>
+          <li style="font-size:0.87rem; color:rgba(249,245,238,0.7); display:flex; gap:0.7rem;"><span style="color:var(--gold);">✦</span> Eco-responsible products on every job</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="reveal" style="text-align:center; max-width:560px; margin:0 auto;">
+    <div class="section-tag" style="justify-content:center;">Our Values</div>
+    <h2>What We <em>Stand For</em></h2>
+  </div>
+  <div class="values-grid" data-stagger>
+    <div class="value-card reveal">
+      <div class="value-num">01</div>
+      <h3>Quality Without Compromise</h3>
+      <p>We use only professional-grade, eco-certified products. Every technique we apply is built around protecting your vehicle's finish while delivering a superior clean.</p>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-num">02</div>
+      <h3>Radical Convenience</h3>
+      <p>We believe your time is precious. That's why everything we do — from booking to payment — is designed to take as little of your time as possible.</p>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-num">03</div>
+      <h3>Absolute Transparency</h3>
+      <p>No hidden fees. No surprise charges. What you see on our pricing page is what you pay. We communicate clearly and honestly at every step.</p>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-num">04</div>
+      <h3>Environmental Responsibility</h3>
+      <p>We minimise water usage and use biodegradable, non-toxic detergents. We care about Abu Dhabi's environment as much as your car.</p>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-num">05</div>
+      <h3>People First</h3>
+      <p>Our team members are treated with respect and invested in through ongoing training. A happy team produces happy customers — and outstanding results.</p>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-num">06</div>
+      <h3>Continuous Improvement</h3>
+      <p>Every customer rating and piece of feedback shapes how we work. We are relentlessly committed to getting better at every single thing we do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="reveal" style="text-align:center; max-width:560px; margin:0 auto;">
+    <div class="section-tag" style="justify-content:center;">The Team</div>
+    <h2>The People <em>Behind the Shine</em></h2>
+    <p class="section-intro" style="margin:0.8rem auto 0; text-align:center;">Every member of our team is trained, certified, and passionate about delivering the best car care in Abu Dhabi.</p>
+  </div>
+  <div class="team-grid" data-stagger>
+    <div class="team-card reveal">
+      <div class="team-avatar">K</div>
+      <h4>Khalid A.</h4>
+      <div class="team-role">Founder & Director</div>
+      <p>Car enthusiast with 10+ years in automotive care. Built Brilliant Solutions to redefine car washing in the UAE.</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">R</div>
+      <h4>Rajan S.</h4>
+      <div class="team-role">Head Detailer</div>
+      <p>Certified professional detailer with expertise in paint correction, ceramic coatings, and luxury vehicle care.</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">M</div>
+      <h4>Mohammed Y.</h4>
+      <div class="team-role">Senior Technician</div>
+      <p>Three years with Brilliant Solutions. Specialist in interior detailing and large vehicle packages.</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">S</div>
+      <h4>Sara T.</h4>
+      <div class="team-role">Customer Experience</div>
+      <p>Ensures every booking, query, and follow-up is handled with care and efficiency. Your first point of contact.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust">
+  <div class="reveal">
+    <div class="section-tag">Why Trust Us</div>
+    <h2>The <em>Brilliant</em> Difference</h2>
+  </div>
+  <div class="trust-grid" data-stagger>
+    <div class="trust-card reveal">
+      <div class="trust-icon">🌿</div>
+      <h4>Eco-Friendly Products</h4>
+      <p>All detergents are biodegradable and car-paint-safe. We minimise water waste on every single job — especially important in the UAE climate.</p>
+    </div>
+    <div class="trust-card reveal">
+      <div class="trust-icon">👨‍🔧</div>
+      <h4>Trained & Verified</h4>
+      <p>Every technician is trained in-house, uniformed, and background-checked. You'll always know who's looking after your vehicle.</p>
+    </div>
+    <div class="trust-card reveal">
+      <div class="trust-icon">⚡</div>
+      <h4>Fully Self-Contained</h4>
+      <p>We bring our own water, power, and professional-grade tools. You don't need to provide anything — not even a tap.</p>
+    </div>
+    <div class="trust-card reveal">
+      <div class="trust-icon">🔒</div>
+      <h4>Fully Insured</h4>
+      <p>In the rare event of any damage, we take full responsibility. We carry full liability coverage on every job we complete.</p>
+    </div>
+    <div class="trust-card reveal">
+      <div class="trust-icon">📱</div>
+      <h4>Easy & Fast Booking</h4>
+      <p>Book in under 2 minutes via website, WhatsApp, or phone. Flexible 7-day-a-week scheduling with 7 AM – 9 PM slots.</p>
+    </div>
+    <div class="trust-card reveal">
+      <div class="trust-icon">💎</div>
+      <h4>Satisfaction Guarantee</h4>
+      <p>Not happy with the result? We'll redo the entire service at no cost. Period. No conditions, no arguments.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testi">
+  <div class="reveal" style="text-align:center; max-width:560px; margin:0 auto;">
+    <div class="section-tag" style="justify-content:center;">Customer Reviews</div>
+    <h2>What Our Clients <em>Say</em></h2>
+  </div>
+  <div class="testi-grid" data-stagger>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Booked them for my Tesla — arrived on time, were professional, and the car looked showroom-fresh. I've since referred four colleagues."</p>
+      <div class="testi-author"><strong>Ahmed Al Mansoori</strong><span>Al Reem Island</span></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Monthly subscription is the best thing I've done for my car. Consistently brilliant results, always on time, always polite. Can't recommend enough."</p>
+      <div class="testi-author"><strong>Priya Nair</strong><span>Khalifa City A</span></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"They came to my office building and the car was done before my morning meeting ended. Interior spotless. Outstanding service, genuinely impressive."</p>
+      <div class="testi-author"><strong>James McAllister</strong><span>Mohammed Bin Zayed City</span></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"I have a white Range Rover and keeping it clean in Abu Dhabi is a challenge. Brilliant Solutions makes it effortless. Worth every dirham."</p>
+      <div class="testi-author"><strong>Fatima Al Hashemi</strong><span>Yas Island</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="about-cta">
+  <h2 class="reveal">Join Our Growing<br><em>Family of Clients</em></h2>
+  <p class="reveal">Experience Abu Dhabi's favourite door-to-door car wash for yourself. First wash? Book now.</p>
+  <div class="cta-pair reveal">
+    <a href="contact.html" class="btn-primary">Book a Wash</a>
+    <a href="services.html" class="btn-outline">View Packages</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><div class="logo">Brilliant Solutions</div><p>Abu Dhabi's premier door-to-door car wash service. Professional, eco-friendly, and fully guaranteed.</p></div>
+    <div class="footer-col"><h5>Pages</h5><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="how-it-works.html">How It Works</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html">Express Wash</a></li><li><a href="services.html">Standard Detail</a></li><li><a href="services.html">Premium Detail</a></li><li><a href="services.html">Paint Protection</a></li><li><a href="services.html">Monthly Plans</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+97150000000">+971 50 000 0000</a></li><li><a href="mailto:info@brilliantsolutions.ae">info@brilliantsolutions.ae</a></li><li><a href="#">Abu Dhabi, UAE</a></li><li><a href="#">7 AM – 9 PM Daily</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Brilliant Solutions Car Wash · Abu Dhabi, UAE</span>
+    <div class="footer-socials"><a href="#" class="social-btn">f</a><a href="#" class="social-btn">ig</a><a href="#" class="social-btn">in</a><a href="#" class="social-btn">tw</a></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/971500000000" class="whatsapp-float" target="_blank">💬</a>
+<script src="main.js"></script>
+</body>
+</html>

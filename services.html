@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Brilliant Solutions Car Wash</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── SERVICES FULL GRID ── */
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(201,168,76,0.08); margin-top: 4rem; }
+.svc-card {
+  background: var(--dark2); padding: 2.8rem 2.2rem;
+  position: relative; overflow: hidden; transition: background 0.3s;
+}
+.svc-card:hover { background: var(--dark3); }
+.svc-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transition: transform 0.4s; transform-origin: left; }
+.svc-card:hover::after { transform: scaleX(1); }
+.svc-badge {
+  display: inline-block; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 0.3rem 0.8rem; border: 1px solid rgba(201,168,76,0.3); color: var(--gold);
+  border-radius: 2px; margin-bottom: 1.5rem;
+}
+.svc-icon { font-size: 2rem; margin-bottom: 1.5rem; }
+.svc-card h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; margin-bottom: 0.8rem; }
+.svc-card > p { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
+.svc-includes { margin-top: 1.5rem; }
+.svc-includes h5 { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
+.svc-includes ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.svc-includes li { font-size: 0.83rem; color: rgba(249,245,238,0.7); display: flex; align-items: center; gap: 0.6rem; }
+.svc-includes li::before { content: '✓'; color: var(--gold); font-size: 0.75rem; }
+.svc-price-row {
+  margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: baseline; justify-content: space-between;
+}
+.price-block { display: flex; align-items: baseline; gap: 0.3rem; }
+.from-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.price-big { font-family: var(--font-display); font-size: 2rem; color: var(--gold); font-weight: 600; }
+.price-unit { font-size: 0.72rem; color: var(--muted); }
+.svc-card .book-link { font-size: 0.75rem; color: var(--gold); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: opacity 0.3s; }
+.svc-card .book-link:hover { opacity: 0.7; }
+
+/* ── FEATURED CARD ── */
+.svc-card.featured { background: var(--dark3); border: 1px solid rgba(201,168,76,0.2); }
+.svc-card.featured .svc-badge { background: rgba(201,168,76,0.1); }
+
+/* ── ADD-ONS ── */
+#addons { background: var(--black); }
+.addons-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
+.addon-card { background: var(--dark2); border: 1px solid rgba(255,255,255,0.04); padding: 1.8rem 1.5rem; border-radius: 2px; transition: border-color 0.3s; }
+.addon-card:hover { border-color: rgba(201,168,76,0.2); }
+.addon-card h4 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; margin-bottom: 0.5rem; }
+.addon-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+.addon-price { font-family: var(--font-display); font-size: 1.3rem; color: var(--gold); margin-top: 1rem; font-weight: 600; }
+.addon-price span { font-size: 0.7rem; color: var(--muted); font-family: var(--font-body); font-weight: 300; }
+
+/* ── COMPARISON TABLE ── */
+#compare { background: var(--dark2); }
+.compare-table { width: 100%; border-collapse: collapse; margin-top: 3rem; }
+.compare-table th { padding: 1.2rem 1.5rem; text-align: left; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.compare-table th:first-child { color: var(--muted); }
+.compare-table td { padding: 1.1rem 1.5rem; font-size: 0.87rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+.compare-table td:first-child { color: rgba(249,245,238,0.75); }
+.compare-table .yes { color: var(--gold); font-size: 1rem; }
+.compare-table .no { color: rgba(136,133,128,0.4); font-size: 1rem; }
+.compare-table .pkg-head { font-family: var(--font-display); font-size: 1rem; font-weight: 400; color: var(--white); }
+.compare-table .pkg-price { font-family: var(--font-display); color: var(--gold); font-size: 1.2rem; font-weight: 600; }
+.compare-table .highlight th { background: rgba(201,168,76,0.05); }
+
+/* ── CTA ── */
+#svc-cta { background: var(--black); text-align: center; }
+#svc-cta h2 { margin-bottom: 1.2rem; }
+#svc-cta p { color: var(--muted); max-width: 460px; margin: 0 auto 2.5rem; }
+.cta-pair { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .addons-grid { grid-template-columns: 1fr 1fr; }
+  .compare-table { font-size: 0.8rem; }
+  .compare-table th, .compare-table td { padding: 0.9rem 0.8rem; }
+}
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .addons-grid { grid-template-columns: 1fr; }
+  .compare-table { display: block; overflow-x: auto; }
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">Brilliant Solutions<span>Car Wash · Abu Dhabi</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Book Now</a>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="how-it-works.html">How It Works</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="nav-cta">Book Now</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span>Services</div>
+  <div class="section-tag">Services & Pricing</div>
+  <h1>Our <em>Packages</em></h1>
+</div>
+
+<!-- SERVICES GRID -->
+<section id="services-main" style="background:var(--dark2);">
+  <div class="reveal">
+    <p class="section-intro" style="max-width:600px;">Every service is delivered door-to-door across Abu Dhabi. All products are premium and eco-friendly. Prices vary by vehicle size.</p>
+  </div>
+  <div class="services-grid" data-stagger>
+    <div class="svc-card reveal">
+      <div class="svc-badge">Most Popular</div>
+      <div class="svc-icon">💧</div>
+      <h3>Express Wash</h3>
+      <p>A quick, high-quality exterior wash for your daily refresh. Fast and efficient without compromising on quality.</p>
+      <div class="svc-includes">
+        <h5>Includes</h5>
+        <ul>
+          <li>Exterior foam pre-wash</li>
+          <li>Hand wash & rinse</li>
+          <li>Hand dry with microfibre</li>
+          <li>Tyre shine application</li>
+          <li>Window exterior clean</li>
+        </ul>
+      </div>
+      <div class="svc-price-row">
+        <div class="price-block">
+          <span class="from-label">From</span>
+          <span class="price-big">49</span>
+          <span class="price-unit">AED</span>
+        </div>
+        <a href="contact.html" class="book-link">Book →</a>
+      </div>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-badge">Best Value</div>
+      <div class="svc-icon">✨</div>
+      <h3>Standard Detail</h3>
+      <p>A thorough inside-and-out service that leaves your car looking fresh and properly detailed, top to bottom.</p>
+      <div class="svc-includes">
+        <h5>Includes Everything in Express, plus</h5>
+        <ul>
+          <li>Full interior vacuum</li>
+          <li>Dashboard & console wipe</li>
+          <li>Door sills cleaning</li>
+          <li>Interior windows cleaned</li>
+          <li>Air freshener</li>
+        </ul>
+      </div>
+      <div class="svc-price-row">
+        <div class="price-block">
+          <span class="from-label">From</span>
+          <span class="price-big">99</span>
+          <span class="price-unit">AED</span>
+        </div>
+        <a href="contact.html" class="book-link">Book →</a>
+      </div>
+    </div>
+    <div class="svc-card featured reveal">
+      <div class="svc-badge">Premium</div>
+      <div class="svc-icon">🏆</div>
+      <h3>Premium Detail</h3>
+      <p>Our flagship service — a complete luxury detailing experience delivering showroom-quality results at your door.</p>
+      <div class="svc-includes">
+        <h5>Includes Everything in Standard, plus</h5>
+        <ul>
+          <li>Hand wax & polish</li>
+          <li>Leather seat conditioning</li>
+          <li>Engine bay light clean</li>
+          <li>Odour elimination treatment</li>
+          <li>Plastic trim restoration</li>
+        </ul>
+      </div>
+      <div class="svc-price-row">
+        <div class="price-block">
+          <span class="from-label">From</span>
+          <span class="price-big">199</span>
+          <span class="price-unit">AED</span>
+        </div>
+        <a href="contact.html" class="book-link">Book →</a>
+      </div>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-badge">Protection</div>
+      <div class="svc-icon">🔆</div>
+      <h3>Paint Protection</h3>
+      <p>Advanced paint correction and ceramic coating for long-lasting protection against the harsh UAE climate and UV.</p>
+      <div class="svc-includes">
+        <h5>Includes</h5>
+        <ul>
+          <li>Paint decontamination wash</li>
+          <li>Clay bar treatment</li>
+          <li>Machine polish / paint correction</li>
+          <li>Ceramic coating application</li>
+          <li>6-month warranty included</li>
+        </ul>
+      </div>
+      <div class="svc-price-row">
+        <div class="price-block">
+          <span class="from-label">From</span>
+          <span class="price-big">499</span>
+          <span class="price-unit">AED</span>
+        </div>
+        <a href="contact.html" class="book-link">Book →</a>
+      </div>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-badge">Large Vehicle</div>
+      <div class="svc-icon">🚐</div>
+      <h3>SUV / Van Package</h3>
+      <p>Our full detail service scaled appropriately for larger vehicles — SUVs, vans, pickup trucks, and 4x4s.</p>
+      <div class="svc-includes">
+        <h5>Includes</h5>
+        <ul>
+          <li>Full exterior wash & dry</li>
+          <li>Interior vacuum (all rows)</li>
+          <li>Dashboard, console, doors</li>
+          <li>All windows interior & exterior</li>
+          <li>Tyre dressing all 4 wheels</li>
+        </ul>
+      </div>
+      <div class="svc-price-row">
+        <div class="price-block">
+          <span class="from-label">From</span>
+          <span class="price-big">149</span>
+          <span class="price-unit">AED</span>
+        </div>
+        <a href="contact.html" class="book-link">Book →</a>
+      </div>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-badge">Subscribe & Save</div>
+      <div class="svc-icon">📦</div>
+      <h3>Monthly Plan</h3>
+      <p>Set your preferred schedule — weekly or bi-weekly — and save up to 30% versus booking individually each time.</p>
+      <div class="svc-includes">
+        <h5>Plan Options</h5>
+        <ul>
+          <li>4x Express Washes / month</li>
+          <li>2x Standard Details / month</li>
+          <li>Custom schedule available</li>
+          <li>Priority booking & same-day slots</li>
+          <li>Dedicated account manager</li>
+        </ul>
+      </div>
+      <div class="svc-price-row">
+        <div class="price-block">
+          <span class="from-label">From</span>
+          <span class="price-big">299</span>
+          <span class="price-unit">AED/mo</span>
+        </div>
+        <a href="contact.html" class="book-link">Subscribe →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADD-ONS -->
+<section id="addons">
+  <div class="reveal">
+    <div class="section-tag">Extras</div>
+    <h2>Add-On <em>Services</em></h2>
+    <p class="section-intro">Enhance any package with these targeted extras at checkout or when booking.</p>
+  </div>
+  <div class="addons-grid" data-stagger>
+    <div class="addon-card reveal">
+      <h4>Scratch Removal</h4>
+      <p>Light surface scratch treatment using professional compound and polish.</p>
+      <div class="addon-price">+80 <span>AED</span></div>
+    </div>
+    <div class="addon-card reveal">
+      <h4>Headlight Restore</h4>
+      <p>Yellowed or foggy headlights restored to crystal clarity using UV-resistant polish.</p>
+      <div class="addon-price">+60 <span>AED</span></div>
+    </div>
+    <div class="addon-card reveal">
+      <h4>Ozone Treatment</h4>
+      <p>Deep interior odour elimination using professional ozone generator. Removes smoke & bacteria.</p>
+      <div class="addon-price">+70 <span>AED</span></div>
+    </div>
+    <div class="addon-card reveal">
+      <h4>Engine Bay Detail</h4>
+      <p>Thorough degreasing and cleaning of the engine bay for a factory-fresh appearance.</p>
+      <div class="addon-price">+90 <span>AED</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section id="compare">
+  <div class="reveal">
+    <div class="section-tag">Compare</div>
+    <h2>Package <em>Comparison</em></h2>
+  </div>
+  <div style="overflow-x:auto;">
+    <table class="compare-table reveal">
+      <thead>
+        <tr class="highlight">
+          <th>Feature</th>
+          <th><span class="pkg-head">Express</span><br><span class="pkg-price">49 AED</span></th>
+          <th><span class="pkg-head">Standard</span><br><span class="pkg-price">99 AED</span></th>
+          <th><span class="pkg-head">Premium</span><br><span class="pkg-price">199 AED</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Exterior foam wash</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Hand wash & dry</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Exterior windows</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Tyre shine</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Interior vacuum</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Dashboard & console wipe</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Interior windows</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Air freshener</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Hand wax & polish</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Leather conditioning</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Engine bay clean</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Odour elimination</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="svc-cta">
+  <h2 class="reveal">Not Sure Which <em>Package?</em></h2>
+  <p class="reveal">Contact us and we'll help you pick the best service for your vehicle and budget.</p>
+  <div class="cta-pair reveal">
+    <a href="contact.html" class="btn-primary">Book Now</a>
+    <a href="contact.html" class="btn-outline">Ask Us</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">Brilliant Solutions</div>
+      <p>Abu Dhabi's premier door-to-door car wash service. Professional, eco-friendly, and fully guaranteed.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Pages</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="services.html">Express Wash</a></li>
+        <li><a href="services.html">Standard Detail</a></li>
+        <li><a href="services.html">Premium Detail</a></li>
+        <li><a href="services.html">Paint Protection</a></li>
+        <li><a href="services.html">Monthly Plans</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:+97150000000">+971 50 000 0000</a></li>
+        <li><a href="mailto:info@brilliantsolutions.ae">info@brilliantsolutions.ae</a></li>
+        <li><a href="#">Abu Dhabi, UAE</a></li>
+        <li><a href="#">7 AM – 9 PM Daily</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Brilliant Solutions Car Wash · Abu Dhabi, UAE</span>
+    <div class="footer-socials">
+      <a href="#" class="social-btn">f</a><a href="#" class="social-btn">ig</a><a href="#" class="social-btn">in</a><a href="#" class="social-btn">tw</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/971500000000" class="whatsapp-float" target="_blank">💬</a>
+<script src="main.js"></script>
+</body>
+</html>

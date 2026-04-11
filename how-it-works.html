@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works — Brilliant Solutions Car Wash</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── PROCESS STEPS ── */
+#process { background: var(--dark2); }
+.process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(201,168,76,0.07); margin-top: 4rem; }
+.proc-step {
+  background: var(--dark2); padding: 3.5rem 3rem;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+.proc-step:hover { background: var(--dark3); }
+.proc-num {
+  font-family: var(--font-display); font-size: 5rem; font-weight: 700;
+  color: rgba(201,168,76,0.08); line-height: 1; margin-bottom: 1.5rem;
+  transition: color 0.3s;
+}
+.proc-step:hover .proc-num { color: rgba(201,168,76,0.2); }
+.proc-step h3 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 400; margin-bottom: 1rem; }
+.proc-step p { font-size: 0.9rem; color: var(--muted); line-height: 1.85; }
+.proc-step .proc-icon { font-size: 2rem; margin-bottom: 1rem; }
+.proc-detail {
+  margin-top: 1.5rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.proc-detail ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.proc-detail li { font-size: 0.82rem; color: rgba(249,245,238,0.55); display: flex; gap: 0.6rem; }
+.proc-detail li::before { content: '→'; color: var(--gold); }
+
+/* ── TIMELINE STRIP ── */
+#timeline { background: var(--black); padding: 6rem 5%; }
+.tl-inner { max-width: 760px; margin: 0 auto; }
+.tl-title { text-align: center; margin-bottom: 4rem; }
+.tl-item {
+  display: flex; gap: 2.5rem; padding: 2rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+}
+.tl-item:last-child { border-bottom: none; }
+.tl-time { min-width: 90px; font-family: var(--font-display); font-size: 0.95rem; color: var(--gold); padding-top: 0.1rem; }
+.tl-dot {
+  min-width: 12px; height: 12px; width: 12px; border-radius: 50%;
+  border: 2px solid var(--gold); margin-top: 0.35rem;
+  position: relative; background: var(--black);
+}
+.tl-dot::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+}
+.tl-content h4 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; margin-bottom: 0.4rem; }
+.tl-content p { font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
+
+/* ── COVERAGE ── */
+#coverage { background: var(--dark2); }
+.coverage-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.areas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 2rem; }
+.area-pill {
+  padding: 0.8rem 1rem; background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05); border-radius: 2px;
+  font-size: 0.83rem; color: rgba(249,245,238,0.7);
+  display: flex; align-items: center; gap: 0.6rem; transition: border-color 0.3s;
+}
+.area-pill:hover { border-color: rgba(201,168,76,0.25); color: var(--white); }
+.area-pill::before { content: '📍'; font-size: 0.75rem; }
+.coverage-right { padding-top: 2rem; }
+.coverage-right p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 1.5rem; }
+.coverage-note {
+  background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.15);
+  padding: 1.5rem; border-radius: 2px;
+}
+.coverage-note h5 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; margin-bottom: 0.6rem; }
+.coverage-note p { font-size: 0.83rem; color: var(--muted); line-height: 1.7; margin-bottom: 0; }
+.coverage-note a { color: var(--gold); }
+
+/* ── FAQ ── */
+#faq { background: var(--black); }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3.5rem; }
+.faq-item {
+  background: var(--dark2); border: 1px solid rgba(255,255,255,0.05);
+  padding: 2rem; border-radius: 2px;
+  transition: border-color 0.3s;
+}
+.faq-item:hover { border-color: rgba(201,168,76,0.15); }
+.faq-item h4 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; margin-bottom: 0.8rem; color: var(--white); }
+.faq-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
+
+/* ── CTA ── */
+#hw-cta { background: var(--dark2); text-align: center; border-top: 1px solid rgba(201,168,76,0.1); }
+#hw-cta h2 { margin-bottom: 1rem; }
+#hw-cta p { color: var(--muted); max-width: 440px; margin: 0 auto 2.5rem; }
+.cta-pair { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .process-grid { grid-template-columns: 1fr; }
+  .coverage-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .faq-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .areas-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">Brilliant Solutions<span>Car Wash · Abu Dhabi</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Book Now</a>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="how-it-works.html">How It Works</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="nav-cta">Book Now</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span>How It Works</div>
+  <div class="section-tag">The Process</div>
+  <h1>Simple as<br><em>1, 2, 3</em></h1>
+</div>
+
+<!-- PROCESS STEPS -->
+<section id="process">
+  <div class="reveal" style="max-width:600px; margin-bottom:0;">
+    <p class="section-intro">From booking to a brilliant clean — here's exactly what happens at each step of your Brilliant Solutions experience.</p>
+  </div>
+  <div class="process-grid" data-stagger>
+    <div class="proc-step reveal">
+      <div class="proc-num">01</div>
+      <div class="proc-icon">📱</div>
+      <h3>Book Your Wash</h3>
+      <p>Choose your service package, select a date and time slot that fits your schedule, and share your location in Abu Dhabi. It takes under two minutes.</p>
+      <div class="proc-detail">
+        <ul>
+          <li>Book via our website form, WhatsApp, or phone call</li>
+          <li>Choose from any available time slot — 7 AM to 9 PM, 7 days</li>
+          <li>Instant confirmation sent to your phone and email</li>
+          <li>Easy rescheduling — no cancellation fees up to 2 hours before</li>
+        </ul>
+      </div>
+    </div>
+    <div class="proc-step reveal">
+      <div class="proc-num">02</div>
+      <div class="proc-icon">🚗</div>
+      <h3>We Come to You</h3>
+      <p>Our professional technician arrives at your building, home, office, or wherever your car is parked — fully equipped with everything needed.</p>
+      <div class="proc-detail">
+        <ul>
+          <li>Trained, uniformed, and background-verified technician</li>
+          <li>Fully self-contained — brings water, power, and all equipment</li>
+          <li>You receive a live notification 30 minutes before arrival</li>
+          <li>No parking space or access needed — we handle it all</li>
+        </ul>
+      </div>
+    </div>
+    <div class="proc-step reveal">
+      <div class="proc-num">03</div>
+      <div class="proc-icon">✨</div>
+      <h3>We Get to Work</h3>
+      <p>While you go about your day, our technician completes the wash using premium eco-friendly products to the highest professional standard.</p>
+      <div class="proc-detail">
+        <ul>
+          <li>Biodegradable, car-safe detergents — safe for all paint types</li>
+          <li>Methodical process from roof to sills — nothing is missed</li>
+          <li>Live photo updates if you'd like to see progress</li>
+          <li>Any add-ons applied at this stage as requested</li>
+        </ul>
+      </div>
+    </div>
+    <div class="proc-step reveal">
+      <div class="proc-num">04</div>
+      <div class="proc-icon">💎</div>
+      <h3>Inspect & Enjoy</h3>
+      <p>We notify you when done. You inspect the vehicle, pay conveniently, and drive away in a brilliantly clean car — or just enjoy it where it's parked.</p>
+      <div class="proc-detail">
+        <ul>
+          <li>You're notified by SMS and WhatsApp when complete</li>
+          <li>Quick walk-around inspection with the technician</li>
+          <li>Pay by cash, card, or bank transfer — your choice</li>
+          <li>Rate us and share feedback via our quick form</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="tl-title reveal">
+    <div class="section-tag" style="justify-content:center;">What to Expect</div>
+    <h2>Your <em>Timeline</em></h2>
+    <p class="section-intro" style="margin: 0.8rem auto 0; text-align:center;">Here's how a typical Standard Detail appointment plays out from start to finish.</p>
+  </div>
+  <div class="tl-inner">
+    <div class="tl-item reveal">
+      <div class="tl-time">T - 24hr</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Booking Confirmation</h4>
+        <p>You receive an email and WhatsApp message confirming your appointment details, package, and assigned technician name.</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-time">T - 30min</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>On the Way Notification</h4>
+        <p>Your technician sends a WhatsApp message — they're en route and will arrive within 30 minutes. No need to wait outside.</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-time">Arrival</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Technician Arrives</h4>
+        <p>Fully equipped with portable water tank, pressure washer, eco detergents, and all tools. Setup takes under 5 minutes.</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-time">+45–60 min</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Wash Complete</h4>
+        <p>A Standard Detail typically takes 45–60 minutes. Premium packages take 90–120 minutes. Express is done in under 30.</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-time">Done ✓</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Inspection & Payment</h4>
+        <p>You're notified to come inspect. Technician walks you through the work. Pay and rate us — we love the feedback.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE -->
+<section id="coverage">
+  <div class="coverage-layout">
+    <div>
+      <div class="section-tag reveal">Service Area</div>
+      <h2 class="reveal">We Cover All of<br><em>Abu Dhabi</em></h2>
+      <div class="areas-grid" data-stagger>
+        <div class="area-pill reveal">Al Reem Island</div>
+        <div class="area-pill reveal">Khalifa City A & B</div>
+        <div class="area-pill reveal">Al Muroor</div>
+        <div class="area-pill reveal">Al Mushrif</div>
+        <div class="area-pill reveal">Yas Island</div>
+        <div class="area-pill reveal">Saadiyat Island</div>
+        <div class="area-pill reveal">MBZ City</div>
+        <div class="area-pill reveal">Al Raha Beach</div>
+        <div class="area-pill reveal">Al Raha Gardens</div>
+        <div class="area-pill reveal">Downtown Abu Dhabi</div>
+        <div class="area-pill reveal">Al Zahiyah / TCA</div>
+        <div class="area-pill reveal">Mussafah</div>
+        <div class="area-pill reveal">Shabiyah</div>
+        <div class="area-pill reveal">Al Bateen</div>
+        <div class="area-pill reveal">Al Nahyan</div>
+        <div class="area-pill reveal">Corniche Area</div>
+      </div>
+    </div>
+    <div class="coverage-right reveal">
+      <p>We serve all major residential and commercial districts across Abu Dhabi, including island communities, mainland suburbs, and industrial areas.</p>
+      <p>Our team is mobile and fully self-sufficient — we don't require any facilities at your location. Just a parking spot next to your vehicle.</p>
+      <div class="coverage-note">
+        <h5>Don't see your area?</h5>
+        <p>We're constantly expanding. Contact us at <a href="tel:+97150000000">+971 50 000 0000</a> or via WhatsApp — chances are we can still reach you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="reveal" style="text-align:center; max-width:560px; margin:0 auto;">
+    <div class="section-tag" style="justify-content:center;">FAQ</div>
+    <h2>Common <em>Questions</em></h2>
+  </div>
+  <div class="faq-grid" data-stagger>
+    <div class="faq-item reveal">
+      <h4>Do I need to stay home during the wash?</h4>
+      <p>Not at all. As long as we can access your vehicle in the parking area, you're free to go about your day. We notify you when done.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4>What if it's raining on my booking day?</h4>
+      <p>If weather conditions affect quality, we'll contact you to reschedule at no charge. We never compromise on results.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4>Do you need access to water at my location?</h4>
+      <p>No — our technicians carry their own water tank. We are completely self-sufficient. No tap or power supply needed from your side.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4>How long does each service take?</h4>
+      <p>Express: 20–30 min. Standard Detail: 45–60 min. Premium Detail: 90–120 min. Paint Protection: 3–5 hours depending on the vehicle.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4>What payment methods are accepted?</h4>
+      <p>We accept cash, credit/debit card, and bank transfer. Payment is collected after the service is completed to your satisfaction.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4>What if I'm not happy with the result?</h4>
+      <p>We'll redo the service at no extra cost — no arguments, no hassle. Your satisfaction is our guarantee on every single wash.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4>Can I book for multiple cars?</h4>
+      <p>Yes — simply mention this when booking. We can service multiple vehicles in one visit with a small multi-car discount applied automatically.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4>How do I modify or cancel a booking?</h4>
+      <p>Contact us via WhatsApp or phone. Cancellations or changes are free up to 2 hours before your scheduled appointment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="hw-cta">
+  <h2 class="reveal">Ready to <em>Book?</em></h2>
+  <p class="reveal">It takes under 2 minutes. We'll confirm within 30 minutes and handle everything else.</p>
+  <div class="cta-pair reveal">
+    <a href="contact.html" class="btn-primary">Book a Wash</a>
+    <a href="services.html" class="btn-outline">View Pricing</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">Brilliant Solutions</div>
+      <p>Abu Dhabi's premier door-to-door car wash service. Professional, eco-friendly, and fully guaranteed.</p>
+    </div>
+    <div class="footer-col"><h5>Pages</h5><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="how-it-works.html">How It Works</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html">Express Wash</a></li><li><a href="services.html">Standard Detail</a></li><li><a href="services.html">Premium Detail</a></li><li><a href="services.html">Paint Protection</a></li><li><a href="services.html">Monthly Plans</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+97150000000">+971 50 000 0000</a></li><li><a href="mailto:info@brilliantsolutions.ae">info@brilliantsolutions.ae</a></li><li><a href="#">Abu Dhabi, UAE</a></li><li><a href="#">7 AM – 9 PM Daily</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Brilliant Solutions Car Wash · Abu Dhabi, UAE</span>
+    <div class="footer-socials"><a href="#" class="social-btn">f</a><a href="#" class="social-btn">ig</a><a href="#" class="social-btn">in</a><a href="#" class="social-btn">tw</a></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/971500000000" class="whatsapp-float" target="_blank">💬</a>
+<script src="main.js"></script>
+</body>
+</html>
